@@ -1,45 +1,319 @@
-<!doctype html><html lang="es"><head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#FFF3C9">
+<meta name="description" content="Te hice algo pequeño... pero quería que lo descubrieras poco a poco.">
+<meta name="robots" content="noindex, nofollow">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_LA">
+<meta property="og:title" content="Para Yane 🌻">
+<meta property="og:description" content="Te hice algo pequeño... pero quería que lo descubrieras poco a poco.">
+<meta property="og:image" content="https://parayane.netlify.app/preview.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Un girasol y el texto Para Yane">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌻</text></svg>">
 <title>Para Yane 🌻</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,600;1,400;1,600&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
-*{box-sizing:border-box}body{margin:0;overflow:hidden;font-family:Georgia,serif;color:#654816;background:linear-gradient(#b9dcf5,#fff0b5 65%,#f5d66b)}
-.screen{max-width:520px;height:100vh;margin:auto;position:relative}.page{position:absolute;inset:0;padding:24px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;opacity:0;pointer-events:none;transform:translateY(18px) scale(.98);transition:.6s}.active{opacity:1;pointer-events:auto;transform:none}
-h1{font-size:40px;margin:0 0 10px}h2{font-size:28px;margin:0 0 10px}p{font-size:17px;line-height:1.6}.subtitle{opacity:.8}.small{font-size:14px;opacity:.7}
-button{border:0;border-radius:999px;padding:13px 22px;background:#f4c430;color:#5d4517;font-size:16px;font-weight:bold;box-shadow:0 8px 20px #6d501933}
-.hero{height:245px;max-width:90%;object-fit:contain;filter:drop-shadow(0 12px 12px #6b501733);animation:float 3s ease-in-out infinite}
-@keyframes float{50%{transform:translateY(-8px) rotate(1deg)}}
-.petal-grid{width:min(100%,430px);display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:14px 0}
-.petal{min-height:165px;background:#fff9dcdd;border:1px solid #e6c95d;border-radius:28px;padding:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:0 10px 25px #6b50172b;transition:.3s}
-.petal.opened{outline:2px solid #e8bf37}.petal img{height:100px;max-width:145px;object-fit:contain}.petal span{font-size:15px}
-.card,.letter{background:#fffdf5ef;border:1px solid #ead99a;border-radius:26px;padding:24px;box-shadow:0 18px 45px #6b50172b;max-width:410px}.card img{height:170px;max-width:90%;object-fit:contain}
-.envelope{font-size:105px;cursor:pointer;animation:float 2.5s infinite}.letter{text-align:left;max-height:69vh;overflow:auto}.letter h2{text-align:center}.letter p{font-size:16px}
-.falling{position:fixed;top:-30px;z-index:50;pointer-events:none;animation:fall linear forwards}@keyframes fall{to{transform:translateY(110vh) rotate(520deg);opacity:0}}
-@media(max-height:700px){.hero{height:185px}.petal{min-height:135px}.petal img{height:82px}h1{font-size:32px}}
-</style></head><body><div class="screen">
+:root{
+  --butter:#FFF6D6;
+  --sun:#F5B700;
+  --honey:#E39A00;
+  --seed:#4B2E13;
+  --seed-soft:#7A5A2E;
+  --leaf:#6F8F4A;
+  --paper:#FFFCF3;
+  --line:#EBD48A;
+  --serif:"Fraunces",Georgia,"Times New Roman",serif;
+  --sans:"Nunito Sans",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+}
+*{box-sizing:border-box}
+html{height:100%;scroll-padding-top:env(safe-area-inset-top,0px)}
+:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+body{
+  margin:0; height:100%; overflow:hidden;
+  font-family:var(--sans); color:var(--seed);
+  background:
+    radial-gradient(90% 45% at 50% 108%, rgba(111,143,74,.30), transparent 70%),
+    radial-gradient(110% 60% at 50% -10%, #FFE590 0%, rgba(255,229,144,0) 65%),
+    linear-gradient(180deg,#FFF9E3,#FCEDB9);
+  display:flex; justify-content:center; align-items:center;
+}
+.screen{width:100%;max-width:520px;height:100%;position:relative;z-index:1}
+.page{
+  position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;
+  padding:28px 24px;
+  opacity:0;visibility:hidden;pointer-events:none;transform:translateY(18px) scale(.98);
+  transition:opacity .65s ease, transform .65s ease, visibility 0s linear .65s;
+}
+.page.active{opacity:1;visibility:visible;pointer-events:auto;transform:none;transition-delay:0s}
 
-<section class="page active" id="home"><h1>Para Yane 🌻</h1>
-<p class="subtitle">Te hice algo pequeño... pero quería que lo descubrieras poco a poco.</p>
-<img class="hero" src="assets/snoopy-girasol.png"><button onclick="openFlower()">Toca la flor ✨</button></section>
+h1,h2{font-family:var(--serif);font-weight:600;line-height:1.15;letter-spacing:-.01em;text-wrap:balance}
+h1{font-size:clamp(36px,11vw,46px);margin:0 0 12px}
+h2{font-size:27px;margin:0 0 12px}
+p{font-size:17px;line-height:1.6;max-width:390px;margin:0 0 14px;text-wrap:pretty}
+.subtitle{color:var(--seed-soft);margin-top:0}
+.small{font-size:14px;color:var(--seed-soft)}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+[hidden]{display:none!important}
 
-<section class="page" id="petals"><h2>Hay algo para ti 🌻</h2><p class="subtitle">Toca cada uno y descubre el mensaje.</p><div class="petal-grid"><div class="petal" id="p0" onclick="showMessage(0)"><img src="assets/snoopy-girasol.png"><span>Una flor para Yane</span></div><div class="petal" id="p1" onclick="showMessage(1)"><img src="assets/snoopy-flor.png"><span>Lo que me haces sentir</span></div><div class="petal" id="p2" onclick="showMessage(2)"><img src="assets/snoopy-ramo.png"><span>Lo linda que eres</span></div><div class="petal" id="p3" onclick="showMessage(3)"><img src="assets/snoopy-girasol-2.png"><span>Último pétalo...</span></div></div><p class="small" id="counter">0 de 4 descubiertos</p><button onclick="go('home')">Volver a la flor</button></section>
+button{
+  font-family:var(--sans);font-size:16px;font-weight:700;
+  border:0;border-radius:999px;padding:14px 28px;background:var(--sun);color:var(--seed);cursor:pointer;
+  box-shadow:0 6px 16px rgba(180,120,0,.28), inset 0 -2px 0 rgba(0,0,0,.08);
+  transition:transform .2s ease, box-shadow .2s ease, background .2s ease;
+}
+button:hover{transform:translateY(-2px);box-shadow:0 10px 20px rgba(180,120,0,.32), inset 0 -2px 0 rgba(0,0,0,.08)}
+button:active{transform:translateY(0)}
+button:focus-visible{outline:3px solid var(--seed);outline-offset:4px}
+.back{background:transparent;box-shadow:none;border:1.5px solid #D9BE6A;color:var(--seed-soft);font-weight:600;padding:12px 24px}
+.back:hover{background:rgba(255,255,255,.55);box-shadow:none}
+.actions{display:flex;flex-direction:column;align-items:center;gap:10px;margin-top:10px}
 
-<section class="page" id="message"><div class="card"><img id="msgImg"><h2 id="msgTitle"></h2><p id="msgText"></p><button onclick="backPetals()">Volver a los pétalos</button></div></section>
+/* Girasol (elemento principal) */
+.flower{
+  width:min(62vw,250px);aspect-ratio:1;display:block;margin:8px 0 6px;
+  background:none;box-shadow:none;border-radius:0;padding:0;
+  filter:drop-shadow(0 12px 16px rgba(150,100,0,.30));
+  animation:sway 5s ease-in-out infinite;
+}
+.flower:hover{box-shadow:none}
+.flower svg{width:100%;height:100%;display:block}
+@keyframes sway{50%{transform:rotate(3deg) scale(1.03)}}
 
-<section class="page" id="complete"><h2>Descubriste todos los pétalos 🌻</h2><p>Pero todavía queda una última sorpresa para ti...</p><div class="envelope" onclick="openLetter()">💌</div><p class="small">Toca el sobre</p></section>
+/* Pétalos */
+.petal-grid{
+  display:grid;grid-template-columns:repeat(2,minmax(0,150px));gap:16px;margin-top:22px;
+  justify-content:center;width:100%
+}
+.petal{
+  position:relative;width:100%;height:118px;padding:10px;
+  border-radius:60% 40% 60% 40% / 55% 45% 55% 45%;
+  background:linear-gradient(160deg,#FFD84D 0%,#F5B700 100%);
+  color:var(--seed);font-family:var(--serif);font-size:15px;font-weight:600;line-height:1.25;
+  box-shadow:0 10px 20px rgba(180,120,0,.25), inset 0 2px 0 rgba(255,255,255,.45);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;
+  transform:rotate(var(--r));transition:transform .3s ease, background .3s ease, box-shadow .3s ease;
+}
+.petal:nth-child(even){border-radius:40% 60% 40% 60% / 45% 55% 45% 55%}
+.petal:hover{transform:rotate(0) scale(1.06);box-shadow:0 14px 26px rgba(180,120,0,.3), inset 0 2px 0 rgba(255,255,255,.45)}
+.pe{display:block;font-size:26px;line-height:1.2;margin-bottom:3px}
+.petal.done{
+  background:linear-gradient(160deg,#FFF3C2,#FCE49A);color:var(--seed-soft);
+  box-shadow:0 4px 10px rgba(180,120,0,.15), inset 0 2px 0 rgba(255,255,255,.6);
+}
+.petal.done::after{
+  content:"✓";position:absolute;top:12px;right:28px;width:20px;height:20px;border-radius:50%;
+  background:var(--leaf);color:#fff;font:700 12px/20px var(--sans);text-align:center
+}
+.dots{display:flex;gap:9px;justify-content:center;margin:22px 0 8px}
+.dots i{width:9px;height:9px;border-radius:50%;background:#E8D496;transition:background .3s, box-shadow .3s}
+.dots i.on{background:var(--sun);box-shadow:0 0 0 3px rgba(245,183,0,.28)}
 
-<section class="page" id="letterPage"><div class="letter"><h2>Para Yane 💛</h2>
-<p>Amor,</p><p>Sé que en este momento no puedo darte nada material, ni ese regalo grande que te mereces, y me duele un poco por eso. Pero de corazón te prometo que te voy a recompensar de alguna otra manera, porque tú te mereces todo y más.</p>
-<p>Te amo mucho, de verdad. Hoy en este día tan especial quería al menos darte un pequeño detalle, por más simple que sea, para que no sientas ni por un segundo que no quise hacerlo o que me olvidé. Nunca haría eso.</p>
-<p>Si estuviera en mis manos, yo te daría todooooo, absolutamente todo lo que tengo y lo que soy. Tú eres mi persona favorita y quiero que siempre lo sientas así.</p>
-<p>Gracias por entenderme, amor</p><p><strong>Con mucho amor,<br>Junior ❤️</strong></p></div><button onclick="go('home')">Volver a empezar 🌻</button></section>
+/* Mensaje de cada pétalo */
+.card{
+  background:var(--paper);border-radius:28px;padding:30px 26px 26px;max-width:400px;width:100%;
+  box-shadow:0 18px 40px rgba(120,80,10,.18);border:1px solid var(--line);
+}
+.card .emoji{font-size:44px;line-height:1;margin-bottom:10px}
+.card h2{font-size:25px}
+.card p{font-family:var(--serif);font-size:18px;line-height:1.65;margin:0 auto 22px}
+
+/* Sobre */
+.envelope{
+  width:min(54vw,210px);display:block;margin:14px 0 10px;
+  background:none;box-shadow:none;border-radius:0;padding:0;
+  filter:drop-shadow(0 12px 14px rgba(120,80,10,.28));
+  animation:float 2.4s ease-in-out infinite;
+}
+.envelope:hover{box-shadow:none}
+.envelope svg{width:100%;height:auto;display:block}
+@keyframes float{50%{transform:translateY(-8px)}}
+
+/* Carta */
+.letter{
+  text-align:left;background:var(--paper);border-radius:20px;padding:26px 24px 10px;
+  width:100%;max-width:420px;
+  max-height:70vh;max-height:calc(100dvh - 135px - env(safe-area-inset-top,0px) - env(safe-area-inset-bottom,0px));overflow:auto;
+  box-shadow:0 18px 40px rgba(120,80,10,.18);border:1px solid var(--line);border-top:5px solid var(--sun);
+  margin-bottom:18px;overscroll-behavior:contain;scrollbar-width:thin;scrollbar-color:#E0C46A transparent;
+}
+.letter p{font-family:var(--serif);font-size:16px;line-height:1.62;max-width:none;margin:0 0 14px}
+.letter .sign{font-style:italic;font-weight:600;margin:20px 0 12px}
+.letter .greet{font-size:26px;font-style:italic;font-weight:600;line-height:1.2;margin-bottom:14px}
+
+/* Pétalos que caen */
+.petal-fall{position:fixed;top:-30px;pointer-events:none;z-index:0;border-radius:70% 0 70% 0;animation:fall linear forwards;will-change:transform}
+@keyframes fall{
+  0%{transform:translate3d(0,0,0) rotate(0)}
+  50%{transform:translate3d(var(--dx),55vh,0) rotate(220deg)}
+  85%{opacity:1}
+  100%{transform:translate3d(calc(var(--dx) * -.7),112vh,0) rotate(440deg);opacity:0}
+}
+
+@media (max-height:600px){
+  .petal{height:100px}
+  .flower{width:min(50vw,190px)}
+  h1{font-size:34px}
+}
+@media (prefers-reduced-motion:reduce){
+  .flower,.envelope{animation:none}
+  .page{transition:opacity .2s ease, visibility 0s linear .2s;transform:none}
+  .petal-fall{display:none}
+}
+</style>
+</head>
+<body>
+<div class="screen">
+
+<section class="page active" id="home">
+  <h1>Para Yane 🌻</h1>
+  <p class="subtitle">Te hice algo pequeño... pero quería que lo descubrieras poco a poco.</p>
+  <button class="flower" id="flowerBtn" aria-label="Abrir la flor" onclick="openFlower()"></button>
+  <p class="small">Toca la flor ✨</p>
+</section>
+
+<section class="page" id="petals">
+  <h2>Hay algo para ti 🌻</h2>
+  <p class="subtitle">Toca cada pétalo y descubre el mensaje.</p>
+  <div class="petal-grid">
+    <button class="petal" style="--r:-7deg" onclick="showMessage(0)"><span class="pe">🌻</span>Una flor<br>para Yane</button>
+    <button class="petal" style="--r:7deg" onclick="showMessage(1)"><span class="pe">💛</span>Lo que me<br>haces sentir</button>
+    <button class="petal" style="--r:7deg" onclick="showMessage(2)"><span class="pe">🌼</span>Lo linda<br>que eres</button>
+    <button class="petal" style="--r:-7deg" onclick="showMessage(3)"><span class="pe">💌</span>Último<br>pétalo</button>
+  </div>
+  <div class="dots" id="dots" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+  <p class="sr-only" id="progress" aria-live="polite">0 de 4 descubiertos</p>
+  <div class="actions">
+    <button id="toEnvelope" onclick="go('complete')" hidden>Ir al sobre 💌</button>
+    <button class="back" onclick="go('home')">Volver a la flor</button>
+  </div>
+</section>
+
+<section class="page" id="message">
+  <div class="card">
+    <div class="emoji" id="msgEmoji">🌻</div>
+    <h2 id="msgTitle"></h2>
+    <p id="msgText"></p>
+    <button onclick="backPetals()">Volver a los pétalos</button>
+  </div>
+</section>
+
+<section class="page" id="complete">
+  <h2>Descubriste todos los pétalos 🌻</h2>
+  <p class="subtitle">Pero todavía queda una última sorpresa para ti...</p>
+  <button class="envelope" aria-label="Abrir el sobre" onclick="openLetter()">
+    <svg viewBox="0 0 160 112" aria-hidden="true" focusable="false">
+      <rect x="4" y="12" width="152" height="96" rx="10" fill="#FFFCF3" stroke="#E5C55E" stroke-width="2"/>
+      <path d="M6 104 L64 58 M154 104 L96 58" stroke="#EBD58A" stroke-width="2" fill="none" stroke-linecap="round"/>
+      <path d="M4 22 Q4 12 14 12 L146 12 Q156 12 156 22 L80 74 Z" fill="#FFF0B8" stroke="#E5C55E" stroke-width="2" stroke-linejoin="round"/>
+      <circle cx="80" cy="66" r="16" fill="#F5B700" stroke="#D99A00" stroke-width="1.5"/>
+      <path d="M80 74 C69 66 69 57 76 57 C78.5 57 80 59 80 60.5 C80 59 81.5 57 84 57 C91 57 91 66 80 74Z" fill="#4B2E13"/>
+    </svg>
+  </button>
+  <p class="small">Toca el sobre</p>
+</section>
+
+<section class="page" id="letterPage">
+  <div class="letter">
+    <p class="greet">Amor,</p>
+    <p>Sé que en este momento no puedo darte nada material, ni ese regalo grande que te mereces, y me duele un poco por eso. Pero de corazón te prometo que te voy a recompensar de alguna otra manera, porque tú te mereces todo y más.</p>
+    <p>Te amo mucho, de verdad. Hoy en este día tan especial quería al menos darte un pequeño detalle, por más simple que sea, para que no sientas ni por un segundo que no quise hacerlo o que me olvidé. Nunca haría eso.</p>
+    <p>Si estuviera en mis manos, yo te daría todooooo, absolutamente todo lo que tengo y lo que soy. Tú eres mi persona favorita y quiero que siempre lo sientas así.</p>
+    <p>Gracias por entenderme, amor</p>
+    <p class="sign">Con mucho amor,<br>Junior ❤️</p>
+  </div>
+  <button onclick="restart()">Volver a empezar 🌻</button>
+</section>
+
 </div>
+
 <script>
-const data=[{"img": "snoopy-girasol.png", "title": "Una flor para Yane", "text": "Porque hay flores que simplemente hacen pensar en alguien especial. 🌻"}, {"img": "snoopy-flor.png", "title": "Lo que me haces sentir", "text": "Quería regalarte un pequeño momento bonito y sacarte una sonrisa. 💛"}, {"img": "snoopy-ramo.png", "title": "Lo linda que eres", "text": "Entre tantas cosas del día, siempre hay momentos en los que pienso en ti. 🌼"}, {"img": "snoopy-girasol-2.png", "title": "Último pétalo...", "text": "Y todavía queda una última sorpresa que preparé especialmente para ti. 💌"}];
+const data=[
+ ["🌻","Una flor para Yane","Quise regalarte una flor. Sé que es digital y que no se huele ni se toca, pero la hice pensando en ti, con todo mi amor. 🌻"],
+ ["💛","Lo que me haces sentir","Contigo todo se siente distinto. Me sacas sonrisas sin darte cuenta, y pensar en ti se volvió mi parte favorita del día. 💛"],
+ ["🌼","Lo linda que eres conmigo","Eres tan linda conmigo, amor. Me entiendes, me tienes paciencia y me haces sentir querido, incluso cuando no puedo darte todo lo que quisiera. Gracias por ser así. 🌼"],
+ ["💌","Último pétalo...","Hoy es un día especial y mereces flores, aunque por ahora solo pueda darte estas. Te prometo que algún día te regalo las de verdad. 💛"]
+];
 let opened=[false,false,false,false];
-function go(id){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.getElementById(id).classList.add('active')}
-function openFlower(){go('petals');fall(7)}
-function showMessage(i){opened[i]=true;msgImg.src='assets/'+data[i].img;msgTitle.textContent=data[i].title;msgText.textContent=data[i].text;opened.forEach((v,n)=>document.getElementById('p'+n).classList.toggle('opened',v));counter.textContent=opened.filter(Boolean).length+' de 4 descubiertos';go('message');fall(4)}
-function backPetals(){opened.every(Boolean)?(go('complete'),fall(8)):go('petals')}
-function openLetter(){go('letterPage');fall(14)}
-function fall(n){for(let i=0;i<n;i++)setTimeout(()=>{let e=document.createElement('div');e.className='falling';e.textContent=Math.random()>.35?'🌼':'🍃';e.style.left=Math.random()*100+'vw';e.style.fontSize=14+Math.random()*15+'px';e.style.animationDuration=4+Math.random()*5+'s';document.body.appendChild(e);setTimeout(()=>e.remove(),9500)},i*150)}
-</script></body></html>
+const reduceMotion=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* Girasol dibujado en SVG */
+function sunflowerSVG(){
+ let s='<svg viewBox="0 0 200 200" aria-hidden="true" focusable="false"><defs>'+
+  '<linearGradient id="gOut" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFCB2E"/><stop offset="1" stop-color="#E89A00"/></linearGradient>'+
+  '<linearGradient id="gIn" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFE27A"/><stop offset="1" stop-color="#F7B812"/></linearGradient>'+
+  '<radialGradient id="gCen" cx=".4" cy=".35" r=".8"><stop offset="0" stop-color="#8A5A26"/><stop offset="1" stop-color="#3B2211"/></radialGradient>'+
+  '</defs>';
+ const n=18;
+ for(let i=0;i<n;i++) s+=`<path d="M100 96 C83 72 85 32 100 5 C115 32 117 72 100 96Z" fill="url(#gOut)" transform="rotate(${i*360/n} 100 100)"/>`;
+ for(let i=0;i<n;i++) s+=`<path d="M100 96 C87 76 89 48 100 26 C111 48 113 76 100 96Z" fill="url(#gIn)" transform="rotate(${(i+.5)*360/n} 100 100)"/>`;
+ s+='<circle cx="100" cy="100" r="30" fill="url(#gCen)"/><circle cx="100" cy="100" r="30" fill="none" stroke="#2E1A0B" stroke-opacity=".35" stroke-width="1.5"/>';
+ for(let k=1;k<=75;k++){
+  const r=3.0*Math.sqrt(k), t=k*2.399963;
+  const x=100+r*Math.cos(t), y=100+r*Math.sin(t);
+  s+=`<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${k%3?1.1:1.5}" fill="${k%2?'#C89246':'#2A180A'}" fill-opacity=".7"/>`;
+ }
+ return s+'</svg>';
+}
+document.getElementById('flowerBtn').innerHTML=sunflowerSVG();
+
+function go(id){
+ document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+ document.getElementById(id).classList.add('active');
+}
+function updatePetals(){
+ const count=opened.filter(Boolean).length;
+ document.querySelectorAll('.petal').forEach((el,i)=>el.classList.toggle('done',opened[i]));
+ document.querySelectorAll('#dots i').forEach((el,i)=>el.classList.toggle('on',opened[i]));
+ document.getElementById('progress').textContent=count+' de 4 descubiertos';
+ document.getElementById('toEnvelope').hidden=count<4;
+}
+function openFlower(){updatePetals();go('petals');petals(7)}
+function showMessage(i){
+ opened[i]=true;
+ updatePetals();
+ document.getElementById('msgEmoji').textContent=data[i][0];
+ document.getElementById('msgTitle').textContent=data[i][1];
+ document.getElementById('msgText').textContent=data[i][2];
+ go('message');petals(5);
+}
+function backPetals(){
+ if(opened.every(Boolean)){go('complete')}else{go('petals')}
+}
+function openLetter(){go('letterPage');petals(14)}
+function restart(){
+ opened=[false,false,false,false];
+ updatePetals();
+ go('home');
+}
+function petals(n){
+ if(reduceMotion)return;
+ const cols=['#F5B700','#FFD84D','#E39A00','#FFE38A','#FFC629'];
+ for(let i=0;i<n;i++){
+  setTimeout(()=>{
+   const e=document.createElement('span');e.className='petal-fall';
+   const w=9+Math.random()*11;
+   e.style.width=w+'px';
+   e.style.height=(w*1.4)+'px';
+   e.style.background=cols[Math.floor(Math.random()*cols.length)];
+   e.style.left=Math.random()*100+'vw';
+   e.style.setProperty('--dx',((Math.random()-.5)*90)+'px');
+   e.style.animationDuration=(4+Math.random()*4)+'s';
+   document.body.appendChild(e);
+   setTimeout(()=>e.remove(),9000);
+  },i*180);
+ }
+}
+updatePetals();
+</script>
+</body>
+</html>
